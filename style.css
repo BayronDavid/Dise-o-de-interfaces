@@ -6,9 +6,11 @@ body {
     align-items: center;
     justify-content: center;
     height: 100vh;
-    background-color: #f4f4f4;
 }
-
+.container{
+    display: flex;
+    height: 90%;
+}
 .product-card {
     display: flex;
     flex-direction: column;
