@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
-    <!-- Añade la librería aframe-extras aquí -->
     <script src="https://unpkg.com/aframe-extras@latest/dist/aframe-extras.min.js"></script>
+    <script src="https://unpkg.com/aframe-event-set-component@%5E4.0.0/dist/aframe-event-set-component.min.js"></script>
     <title>Escenario Mejorado</title>
 </head>
 
@@ -16,14 +16,27 @@
         <a-assets>
             <a-asset-item id="cityModel"
                 src="https://raw.githubusercontent.com/BayronDavid/Dise-o-de-interfaces/main/assets/GLTF/scene.gltf"></a-asset-item>
-                <img id="skyTexture" src="https://raw.githubusercontent.com/BayronDavid/Dise-o-de-interfaces/main/assets/sky.jpg">
+            <img id="skyTexture"
+                src="https://raw.githubusercontent.com/BayronDavid/Dise-o-de-interfaces/main/assets/sky.jpg">
         </a-assets>
-        <a-entity gltf-model="#cityModel" animation-mixer></a-entity>
+
+        <a-entity position="0 0 0" look-controls cursor="rayOrigin:mouse">
+            <a-camera camera>
+                <a-cursor></a-cursor>
+            </a-camera>
+        </a-entity>
+        <!-- <a-entity gltf-model="#cityModel" animation-mixer></a-entity> -->
         <a-sky src="#skyTexture"></a-sky>
         <a-entity light="color: #FFFFFF; intensity: 1" position="1 1 1"></a-entity>
         <a-entity light="color: #FACC2E; intensity: 1" position="-1 1 0"></a-entity>
         <a-entity light="color: #40FF00; intensity: 1" position="1 -1 0"></a-entity>
         <a-entity light="color: #FBEFF2; intensity: 1" position="1 1 0"></a-entity>
+
+        <a-box position="5 0 -5" rotation="0 45 0" scale="2 2 2" color="white"
+            event-set__enter="_event: mouseenter; color: red; _target: #textEvent; visible: true"
+            event-set__leave="_event: mouseleave; color: white; _target: #textEvent; visible: false"></a-box>
+        <a-entity id="textEvent" text="value: Ejemplo; color: black" position="5 1 -5" scale="5 5 5" visible="false"></a-entity>
+
     </a-scene>
     <script src="main.js"></script>
 </body>
