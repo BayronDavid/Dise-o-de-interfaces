@@ -8,67 +8,37 @@
     <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
     <script src="https://unpkg.com/aframe-extras@latest/dist/aframe-extras.min.js"></script>
     <script src="https://unpkg.com/aframe-event-set-component@%5E4.0.0/dist/aframe-event-set-component.min.js"></script>
-    <title>Exhibición de Scooter</title>
+    
+    <title>Tarjetas</title>
 </head>
 
 <body>
     <div class="product-card">
-        <a-scene embedded class="product-scene" cursor="rayOrigin: mouse">
+        <h1>Scooter Segway GT2</h1>
+        <a-scene embedded class="product-scene">
             <a-assets>
                 <a-asset-item id="modelo-glb"
-                    src="https://raw.githubusercontent.com/BayronDavid/Dise-o-de-interfaces/main/assets/electric_scooter.glb"></a-asset-item>
+                    src="https://raw.githubusercontent.com/BayronDavid/Dise-o-de-interfaces/main/assets/scooter_s3_new2.glb"></a-asset-item>
             </a-assets>
-            <a-sky color="#ECECEC"></a-sky>
-            <a-entity id="modelo" gltf-model="#modelo-glb" rotation="0 45 0" scale="1 1 1">
-                <a-animation attribute="rotation" dur="10000" fill="forwards" to="0 360 0"
-                    repeat="indefinite"></a-animation>
-            </a-entity>
+            <a-entity gltf-model="#modelo-glb" rotation="0 45 0" scale="1 1 1"
+                animation="property: rotation; to: 0 360 0; loop: true; dur: 10000"></a-entity>
             <a-camera position="0 1 2"></a-camera>
         </a-scene>
         <div class="info-card">
-            <h1>Scooter Eléctrico XYZ</h1>
-            <p>Explora la ciudad de una manera moderna y eco-amigable con nuestro Scooter Eléctrico XYZ. Con una
+            <h1>Detalles</h1>
+            <p>Explora la ciudad de una manera moderna y eco-amigable con nuestro Scooter Segway  GT2. Con una
                 velocidad máxima de 20km/h y una batería que dura hasta 30km, tus aventuras urbanas serán inolvidables.
             </p>
+            <ul>
+                <li><strong>Velocidad Máxima:</strong> 20km/h</li>
+                <li><strong>Batería:</strong> 30km de autonomía</li>
+                <li><strong>Peso:</strong> 12kg</li>
+                <li><strong>Carga Máxima:</strong> 100kg</li>
+            </ul>
+            <button class="btn"><b>Ver más</b></button>
+            <button class="btn"><b>Rentar Ahora</b></button>
         </div>
     </div>
-    <script>
-        document.querySelector('a-scene').addEventListener('loaded', () => {
-            let modelo = document.querySelector('#modelo');
-            let scene = document.querySelector('a-scene');
-            let isDragging = false;
-            let startX = 0;
-            let startY = 0;
-            let startRotation = { x: 0, y: 0 };
-
-            scene.addEventListener('mousedown', (evt) => {
-                isDragging = true;
-                startX = evt.clientX;
-                startY = evt.clientY;
-                startRotation.x = modelo.getAttribute('rotation').x;
-                startRotation.y = modelo.getAttribute('rotation').y;
-            });
-
-            scene.addEventListener('mousemove', (evt) => {
-                if (!isDragging) return;
-                let deltaX = evt.clientX - startX;
-                let deltaY = evt.clientY - startY;
-                modelo.setAttribute('rotation', {
-                    x: startRotation.x - deltaY,
-                    y: startRotation.y + deltaX,
-                    z: 0
-                });
-            });
-
-            scene.addEventListener('mouseup', () => {
-                isDragging = false;
-            });
-
-            scene.addEventListener('mouseleave', () => {
-                isDragging = false;
-            });
-        });
-    </script>
 </body>
 
 
